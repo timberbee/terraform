@@ -34,15 +34,15 @@ resource "aws_iam_role" "pc_ro" {
     description = "Read only role for Prisma Cloud"
 }
 
-resource "aws_iam_role_policy_attachment" "rl_secaudit_pol_attach" {
-    role = "${aws_iam_role.rl_ro.name}"
+resource "aws_iam_role_policy_attachment" "pc_secaudit_pol_attach" {
+    role = "${aws_iam_role.pc_ro.name}"
     policy_arn = "arn:aws:iam::aws:policy/SecurityAudit"
 }
 
-resource "aws_iam_role_policy_attachment" "rl_ro_file_attach" {
-    role = "${aws_iam_role.rl_ro.name}"
-    policy_arn = "${aws_iam_policy.rl_ro_file.arn}"
+resource "aws_iam_role_policy_attachment" "pc_ro_file_attach" {
+    role = "${aws_iam_role.pc_ro.name}"
+    policy_arn = "${aws_iam_policy.pc_ro_file.arn}"
 }
-output "rl_role_output_ExtID" {
-    value = "${var.rl_ro_id}"
+output "pc_role_output_ExtID" {
+    value = "${var.pc_ro_id}"
 }
