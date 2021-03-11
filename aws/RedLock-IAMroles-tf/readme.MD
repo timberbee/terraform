@@ -1,1 +1,1 @@
-Terraform scrript for RedLock IAM role provisioning.
+Terraform script for Prisma Cloud IAM role provisioning.
