@@ -1,11 +1,11 @@
-variable "rl_ro_id" {
+variable "pc_ro_id" {
     type = "string"
     description = "Provide an ExternalID (Example: Xoih821ddwf). ExternalID must contain alphanumeric characters and only these special characters are allowed =,.@:/-. "
 }
 
-variable "rl_ro_role_name" {
+variable "pc_ro_role_name" {
     type = "string"
-    description = "Provide an role ARN name (Example: RedlockReadOnlyRole)"
+    description = "Provide an role ARN name (Example: PrismaCloudReadOnlyRole)"
 }
 
 variable "aws_access_key" {
