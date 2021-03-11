@@ -6,9 +6,9 @@ provider "aws" {
   secret_key = "${var.aws_secret_key}"
   region     = "${var.aws_region}"
 }
-data "aws_iam_policy_document" "rl_ro" {
+data "aws_iam_policy_document" "pc_ro" {
     statement {
-        sid = "AllowRedlockROExternalAccess"
+        sid = "AllowPrismaCloudROExternalAccess"
         effect = "Allow"
         actions = ["sts:AssumeRole"]
         principals {
@@ -18,20 +18,20 @@ data "aws_iam_policy_document" "rl_ro" {
         condition {
             test = "StringEquals"
             variable = "sts:ExternalId"
-            values = ["${var.rl_ro_id}"]
+            values = ["${var.pc_ro_id}"]
         }
     }
 }
 
-resource "aws_iam_policy" "rl_ro_file" {
-    name = "RedLock_policy_RO"
-    policy = "${file("aws_iam_policy_document_rl_ro.json")}"
+resource "aws_iam_policy" "pc_ro_file" {
+    name = "PrismaCloud_policy_RO"
+    policy = "${file("aws_iam_policy_document_pc_ro.json")}"
 }
 
-resource "aws_iam_role" "rl_ro" {
-    name = "${var.rl_ro_role_name}"
-    assume_role_policy = "${data.aws_iam_policy_document.rl_ro.json}"
-    description = "Read only role for RedLock"
+resource "aws_iam_role" "pc_ro" {
+    name = "${var.pc_ro_role_name}"
+    assume_role_policy = "${data.aws_iam_policy_document.pc_ro.json}"
+    description = "Read only role for Prisma Cloud"
 }
 
 resource "aws_iam_role_policy_attachment" "rl_secaudit_pol_attach" {
