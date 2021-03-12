@@ -4,22 +4,93 @@
       {
                   "Action": [
                     "apigateway:GET",
+                    "cloudwatch:ListTagsForResource",
                     "cognito-identity:ListTagsForResource",
                     "cognito-idp:ListTagsForResource",
+                    "ds:ListTagsForResource",
+                    "dynamodb:ListTagsOfResource",
+                    "ec2:SearchTransitGatewayRoutes",
+                    "ecr:DescribeImages",
+                    "ecr:GetLifecyclePolicy",
+                    "ecr:ListTagsForResource",
+                    "eks:ListTagsForResource",
                     "elasticbeanstalk:ListTagsForResource",
                     "elasticfilesystem:DescribeTags",
+                    "elasticache:ListTagsForResource",
+                    "es:ListTags",
                     "glacier:GetVaultLock",
                     "glacier:ListTagsForVault",
+                    "glue:GetConnections",
+                    "glue:GetSecurityConfigurations",
                     "logs:GetLogEvents",
-                    "secretsmanager:DescribeSecret",
+                    "mq:listBrokers",
+                    "mq:describeBroker",
+                    "ram:GetResourceShares",
+                    "ssm:GetDocument",
                     "ssm:GetParameters",
                     "ssm:ListTagsForResource",
                     "sqs:SendMessage",
                     "elasticmapreduce:ListSecurityConfigurations",
+                    "elasticmapreduce:GetBlockPublicAccessConfiguration",
                     "sns:listSubscriptions"
+                    "sns:ListTagsForResource",
+                    "sns:ListPlatformApplications",
+                    "wafv2:ListResourcesForWebACL",
+                    "wafv2:ListWebACLs",
+                    "wafv2:ListTagsForResource",
+                    "wafv2:GetWebACL",
+                    "wafv2:GetLoggingConfiguration",
+                    "waf:GetWebACL",
+                    "waf:ListTagsForResource",
+                    "waf:GetLoggingConfiguration",
+                    "waf-regional:ListResourcesForWebACL",
+                    "waf-regional:ListTagsForResource"
                   ],
         "Effect": "Allow",
         "Resource": "*"
       }
     ]
    }
+ },
+ {
+   "PolicyName": "PrismaCloud-IAM-ReadOnly-Policy-ElasticBeanstalk",
+   "PolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "RequiredForAwsElasticbeanstalkConfigurationSettingsApiIngestion",
+         "Action": [
+           "s3:GetObject"
+         ],
+         "Effect": "Allow",
+         "Resource": "arn:aws:s3:::elasticbeanstalk-*/*"
+       }
+     ]
+   }
+ },
+{
+  "PolicyName": "PrismaCloud-ReadOnly-Policy-Compute",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:BatchGetImage",
+          "ecr:DescribeImages",
+          "ecr:DescribeImageScanFindings",
+          "ecr:GetAuthorizationToken",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:GetLifecyclePolicy",
+          "ecr:GetLifecyclePolicyPreview",
+          "ecr:ListImages",
+          "ecr:ListTagsForResource",
+          "kms:Decrypt",
+          "lambda:GetFunction"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ]
+  }
+}
